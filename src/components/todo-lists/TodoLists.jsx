@@ -4,10 +4,6 @@ import Todo from '../todo/Todo.jsx';
 
 class TodoLists extends React.Component {
 
-  onEdit(text) {
-    alert(text)
-  }
-
   render() {
 
     const arr = this.props.todos.map( (todo) => {
@@ -15,18 +11,15 @@ class TodoLists extends React.Component {
         id={todo.id}
         text={todo.title}
         status={todo.status}
-        onEdit={this.onEdit}
         onDelete={this.props.onDelete}
+        onCheck={this.props.onCheck}
+        onEdit={this.props.onEdit}
       />
     })
-    // [ 
-    //   <Todo text="Buy suger" />,
-    //   <Todo text="Buy salt 1kg" />,
-    // ]
 
     return (
       <div className='todo_wrapper'>
-        {arr}
+        {arr.length ? arr : <h3 className='text-center mt-2 mb-2'>Please add Todo</h3>}
       </div>
     )
   }
