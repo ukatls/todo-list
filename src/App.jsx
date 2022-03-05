@@ -66,17 +66,19 @@ class App extends Component {
       )
     }
     return (
-      <div className="App">
-        <Header count={this.state.todos.length} done={this.state.todos.filter((todo) => todo.status).length}/>
-        <main className='main'>
-          <CreateTodo onCreate={this.handleCreateTodo} />
-          <TodoLists 
-            todos={this.state.todos}
-            onDelete={this.onDelete}
-            onCheck={this.onCheck}
-            onEdit={this.onEdit}
-          />
-        </main>
+      <div className='container'>
+        <div className="App">
+          <Header count={this.state.todos.length} done={this.state.todos.filter((todo) => todo.status).length}/>
+          <main className='main'>
+            <CreateTodo onCreate={this.handleCreateTodo} />
+            <TodoLists 
+              todos={this.state.todos}
+              onDelete={this.onDelete}
+              onCheck={this.onCheck}
+              onEdit={this.onEdit}
+            />
+          </main>
+        </div>
       </div>
     )
   }
