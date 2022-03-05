@@ -10,6 +10,7 @@ class App extends Component {
     super(props)
     this.state = {
       todos: [],
+      isLoading: true
     }
     this.handleCreateTodo = this.handleCreateTodo.bind(this);
     this.onDelete = this.onDelete.bind(this);
@@ -19,6 +20,9 @@ class App extends Component {
   componentDidMount() {
     const localData = JSON.parse(localStorage.getItem("todos")) || [];
     this.setState({todos: localData})
+    setTimeout(() => {
+      this.setState({isLoading: false})
+    },2500)
   }
   componentDidUpdate() {
     localStorage.setItem("todos", JSON.stringify(this.state.todos))
@@ -54,6 +58,13 @@ class App extends Component {
 
   render() {
 
+    if(this.state.isLoading){
+      return(
+        <div className='text-center mt-5'>
+          <img width={'400px'} src="https://upload.wikimedia.org/wikipedia/commons/5/54/Ajux_loader.gif" alt="Loading gif" />
+        </div>
+      )
+    }
     return (
       <div className="App">
         <Header count={this.state.todos.length} done={this.state.todos.filter((todo) => todo.status).length}/>
